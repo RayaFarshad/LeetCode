@@ -1,0 +1,25 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x >= 0 && x <= 9){
+               return true;
+           }
+        if(x%10 == 0){
+            return false;
+        }
+        
+        int newNum = 0;
+        while(x >= newNum){
+            if (x == newNum){
+                return true;
+            }
+            newNum = newNum*10 + x%10;
+            if (x == newNum){
+                return true;
+            }
+            x = x/10;
+        }
+        
+        return false;
+
+    }
+}
