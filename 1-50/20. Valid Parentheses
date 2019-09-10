@@ -1,0 +1,47 @@
+class Solution {
+    public boolean isValid(String s) {
+         if (s.isEmpty()) {
+            return true;
+        }
+
+        HashMap<Character, Character> myMap = new HashMap<>();
+        myMap.put('[', ']');
+        myMap.put('{', '}');
+        myMap.put('(', ')');
+        if (myMap.values().contains(s.charAt(0)) || myMap.keySet().contains(s.charAt(s.length() - 1))) {
+            return false;
+        }
+
+        Stack st = new Stack();
+
+        //while (myMap.containsKey(s.charAt(i))) {
+        int num = 0;
+
+            for (int i = 0; i < s.length(); i++){
+                num++;
+                if (myMap.containsKey(s.charAt(i))) {
+                    st.push(s.charAt(i));
+                }
+                if(myMap.containsValue(s.charAt(i))){
+                    if(!st.isEmpty()){
+                    if(myMap.get(st.peek()) == s.charAt(i)) {
+
+                        st.pop();
+                    }
+                    }
+                }
+
+            }
+            if(num %2 != 0){
+                return false;
+            }
+
+            if(st.isEmpty()){
+                return true;
+            }else{
+                return false;
+            }
+
+
+    }
+}
