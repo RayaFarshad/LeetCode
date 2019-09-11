@@ -1,0 +1,32 @@
+class Solution {
+    public int maxSubArray(int[] a) {
+     int sumSoFar = 0;
+     int maxEndingHere = 0;
+     boolean flag = false;
+     int temp = Integer.MIN_VALUE;
+     for(int i= 0; i < a.length; i++){
+         maxEndingHere += a[i];
+         if(a[i]>0){
+             flag = true;
+         }
+         if(maxEndingHere<=0) {
+            maxEndingHere = 0;
+         }
+
+         if(sumSoFar<=maxEndingHere){
+             sumSoFar = maxEndingHere;
+         }
+
+         if(temp < a[i]) {
+             temp = a[i];
+         }
+
+
+     }
+     if(!flag){
+         return temp;
+     }
+     return sumSoFar;
+
+    }
+}
