@@ -1,0 +1,23 @@
+class Solution {
+    
+    public int lengthOfLastWord(String s) {
+
+        if(s.isEmpty()){
+            return 0;
+        }
+        if(s.length() == 1 && !s.contains(" ")){
+            return 1;
+        }
+        if(s.trim().length() == 0){
+            return 0;
+        }
+
+        if(!s.isEmpty() && s != " ") {
+            int spacenum = s.split(" ").length - 1;
+            String s_end = s.split(" ")[spacenum];
+            return s_end.length();
+        }
+
+        return 0;
+    }
+}
