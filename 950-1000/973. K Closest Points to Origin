@@ -1,0 +1,41 @@
+
+class Solution {
+    public int[][] kClosest(int[][] points, int K) {
+
+        Comparator<Node> comp = new Comparator<Node>() {
+            @Override
+            public int compare(Node a, Node b) {
+                return a.dis - b.dis;
+            }
+        };
+
+        PriorityQueue<Node> pq = new PriorityQueue<>(comp);
+
+        for(int i = 0; i < points.length; i++){
+            pq.add(new Node(points[i][0],points[i][1]));
+        }
+        int[][] result = new int[K][];
+        int z = 0;
+        while (K != 0){
+            int[] ar = new int[2];
+            ar[0] = pq.peek().x;
+            ar[1] = pq.peek().y;
+            result[z++] = ar;
+            pq.poll();
+            K--;
+        }
+
+        return result;
+    }
+}
+
+class Node{
+    int x;
+    int y;
+    int dis;
+    Node(int i, int j){
+        x = i;
+        y = j;
+        dis = (int) (Math.sqrt(Math.pow(x,2)+Math.pow(y,2)));
+    }
+}
